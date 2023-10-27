@@ -12,10 +12,14 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+/**
+ * savedStateHandle - helps to parse data without loosing it
+ * it handle the state of the data, when configuration changes or process death
+ */
 @HiltViewModel
 class CoinDetailViewModel @Inject constructor(
     private val coinDetailUseCase : GetCoinByIdUserCase,
-    private val savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _coinDetailState = mutableStateOf(CoinDetailState())
