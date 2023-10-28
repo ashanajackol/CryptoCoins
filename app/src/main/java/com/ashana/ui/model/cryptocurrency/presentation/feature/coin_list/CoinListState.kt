@@ -5,5 +5,5 @@ import com.ashana.ui.model.cryptocurrency.domain.model.Coin
 data class CoinListState(
     val loading: Boolean = false,
     val success: List<Coin> = listOf(),
-    val error: String? = null
+    val error: String = ""
 )

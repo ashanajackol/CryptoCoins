@@ -38,7 +38,10 @@ class CoinDetailViewModel @Inject constructor(
                     _coinDetailState.value = CoinDetailState(success = result.successData, loading = false)
                 }
                 is Resource.Error -> {
-                    _coinDetailState.value = CoinDetailState(error = result.errorMessage, loading = false)
+                    _coinDetailState.value = CoinDetailState(
+                        error = result.errorMessage ?: "Something went wrong!",
+                        loading = false
+                    )
                 }
                 is Resource.Loading -> {
                     _coinDetailState.value = CoinDetailState(loading = true)

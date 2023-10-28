@@ -30,7 +30,7 @@ class CoinListViewModel @Inject constructor(
                     _coinListState.value = CoinListState(success = result.successData, loading = false)
                 }
                 is Resource.Error -> {
-                    _coinListState.value = CoinListState(error = result.errorMessage, loading = false)
+                    _coinListState.value = CoinListState(error = result.errorMessage ?: "Something went wrong!", loading = false)
                 }
                 is Resource.Loading -> {
                     _coinListState.value = CoinListState(loading = true)
