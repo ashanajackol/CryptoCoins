@@ -20,13 +20,13 @@ class GetCoinsUseCase @Inject constructor(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && SdkExtensions.getExtensionVersion(
                 Build.VERSION_CODES.S) >= 7) {
             try {
-                emit(Resource.Loading())
+                emit(Resource.Loading<List<Coin>>())
                 val coin = repository.getCoins().map { it.toCoin() }
-                emit(Resource.Success(coin))
+                emit(Resource.Success<List<Coin>>(coin))
             } catch (e: HttpException) {
-                emit(Resource.Error(errorMessage = "An unexpected error occurred!"))
+                emit(Resource.Error<List<Coin>>(errorMessage = "An unexpected error occurred!"))
             } catch (e: IOException) {
-                emit(Resource.Error(errorMessage = "Something went wrong, please try again later!"))
+                emit(Resource.Error<List<Coin>>(errorMessage = "Something went wrong, please try again later!"))
             }
         }
     }

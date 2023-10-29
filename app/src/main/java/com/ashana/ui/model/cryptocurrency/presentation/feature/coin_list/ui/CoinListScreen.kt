@@ -19,8 +19,8 @@ import com.ashana.ui.model.cryptocurrency.presentation.feature.coin_list.CoinLis
 @Composable
 fun CoinListScreen(
     navController: NavController,
-    viewModel: CoinListViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: CoinListViewModel = hiltViewModel()
 ) {
     Box(
         modifier = modifier.fillMaxSize()

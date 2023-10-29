@@ -6,10 +6,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.ashana.ui.model.cryptocurrency.presentation.feature.coin_details.ui.CoinDetailScreen
+import com.ashana.ui.model.cryptocurrency.presentation.feature.coin_list.ui.CoinListScreen
 import com.ashana.ui.model.cryptocurrency.presentation.theme.CryptoCurrencyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,25 +26,24 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screens.CoinListscreen.route
+                    ) {
+                        composable(
+                            route = Screens.CoinListscreen.route
+                        ) {
+                            CoinListScreen(navController = navController)
+                        }
+                        composable(
+                            route = Screens.CoinDetailsScreen.route
+                        ) {
+                            CoinDetailScreen()
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CryptoCurrencyTheme {
-        Greeting("Android")
     }
 }

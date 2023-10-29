@@ -21,13 +21,13 @@ class GetCoinByIdUserCase @Inject constructor(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && SdkExtensions.getExtensionVersion(
                 Build.VERSION_CODES.S) >= 7) {
             try {
-                emit(Resource.Loading("Please wait..."))
+                emit(Resource.Loading<CoinDetail>("Please wait..."))
                 val coinDetail = repository.getCoinById(coinId = coinId).toCoinDetail()
-                emit(Resource.Success(coinDetail))
+                emit(Resource.Success<CoinDetail>(coinDetail))
             } catch (e: HttpException) {
-                emit(Resource.Error(errorMessage = "An unexpected error occurred!"))
+                emit(Resource.Error<CoinDetail>(errorMessage = "An unexpected error occurred!"))
             } catch (e: IOException) {
-                emit(Resource.Error(errorMessage = "Something went wrong, please try again later!"))
+                emit(Resource.Error<CoinDetail>(errorMessage = "Something went wrong, please try again later!"))
             }
         }
     }
