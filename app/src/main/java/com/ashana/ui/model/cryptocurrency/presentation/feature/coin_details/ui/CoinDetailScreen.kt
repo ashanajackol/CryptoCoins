@@ -28,8 +28,8 @@ import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
 fun CoinDetailScreen(
-    viewModel: CoinDetailViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: CoinDetailViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
 
